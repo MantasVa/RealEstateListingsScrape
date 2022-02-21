@@ -1,8 +1,14 @@
 from enum import IntEnum
 
+class Status(IntEnum):
+    ACTIVE = 1
+    RESERVED = 2
+    SOLD = 3
+
 class Listing:
-  def __init__(self, id, url, municipality, city, district, street, price, room_count, 
-        space, floor, is_new_project, on_auction, status):
+  def __init__(self, id: str, url: str, municipality: str, city: str, district: str, street: str,
+   price: float, room_count: int, space: float, floor: int, floors_count: int, 
+   is_new_project: bool, on_auction: bool, status: Status):
     self.id = id
     self.url = url
     self.municipality = municipality
@@ -13,17 +19,7 @@ class Listing:
     self.room_count = room_count
     self.space = space
     self.floor = floor
+    self.floors_count = floors_count
     self.is_new_project = is_new_project
     self.on_auction = on_auction
     self.status = status
-
-  def to_object(self):
-    return {'id': self.id, 'url': self.url, 'municipality': self.municipality, 'city': self.city,
-       'district': self.district, 'street': self.street, 'price': self.price, 
-       'roomCount': self.room_count, 'space': self.space, 'floor': self.floor,
-        'isNewProject': self.is_new_project, 'onAuction': self.on_auction, 'status': self.status}
-
-class Status(IntEnum):
-    ACTIVE = 1
-    RESERVED = 2
-    SOLD = 3

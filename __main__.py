@@ -28,10 +28,10 @@ def main():
     listings = []
     if pageCount > 0:
         for x in range(1, pageCount + 1):
-            listings += scraper.extractListings(x)
+            listings += scraper.extract_listings(x)
     else:
         logger.error('Page count not found, scraping only this page')
-        listings = scraper.extractListings()
+        listings = scraper.extract_listings()
     driver.quit()    
 
     endpoint = config["DB_ENDPOINT"]

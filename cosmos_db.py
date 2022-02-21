@@ -1,3 +1,4 @@
+from typing import Any
 from azure.cosmos import CosmosClient, PartitionKey, ContainerProxy
 from logging import Logger
 import calendar
@@ -15,10 +16,10 @@ def get_cosmos_container(endpoint, key, dbName, containerName, partitionKey) -> 
 def add_items(container: ContainerProxy, items: list, logger: Logger) -> None:
   logger.debug('Starting to add listings to cosmos db')
   for item in items:
-    add_item(container, item.to_object())
+    add_item(container, vars(item))
   logger.debug('Finished adding listings to cosmos db')
 
-def add_item(container, listing) -> None:
+def add_item(container: ContainerProxy, listing: dict[str, Any]) -> None:
   container.create_item(body=listing)
 
 def clean_duplicate_listings(container: ContainerProxy, logger: Logger) -> None:
