@@ -60,13 +60,13 @@ class Scraper:
             if ',' in location:
                 locationList = location.split(',')
                 if 'r.' in location or 'sav.' in location:
-                    municipality = locationList[0]
-                    city = locationList[1]
+                    municipality = locationList[0].strip()
+                    city = locationList[1].strip()
                 else:
-                    city = locationList[0]
-                    district = locationList[1]
+                    city = locationList[0].strip()
+                    district = locationList[1].strip()
             else:
-                city = location
+                city = location.strip()
             street = urlColumn.br.next_sibling.strip()
         return (url, city, district, municipality, street)
 
